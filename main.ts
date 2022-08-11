@@ -10,6 +10,11 @@ import manifest from "./fresh.gen.ts";
 import { config, setup } from "@twind";
 import { virtualSheet } from "twind/sheets";
 
+// import { config as envConfig } from "dotenv";
+import "https://deno.land/x/dotenv/load.ts";
+
+// console.log(await envConfig());
+
 const sheet = virtualSheet();
 sheet.reset();
 setup({ ...config, sheet });
@@ -23,4 +28,5 @@ function render(ctx: RenderContext, render: InnerRenderFunction) {
   ctx.state.set("twind", newSnapshot);
 }
 
+console.log("test env:", Deno.env.toObject());
 await start(manifest, { render });
